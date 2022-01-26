@@ -1,0 +1,50 @@
+<?php 
+    if(isset($_POST['acao']) && $_POST['identificador'] == 'form_home'){
+        //enviado 
+        if($_POST['email'] != ''){
+            $email = $_POST['email'];
+
+            if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                //validado o email envie entao
+                $mail = new Email('vps.dankicode.com','testes@dankicode.com','gui123456','testes');
+                $mail->addAdress('contato@dankicode.com','testes');
+                $info = array('assunto'=>'Um contato foi registrado','corpo'=>$email);
+                $mail->formatarEmail($info);
+
+                if($mail->enviarEmail()){
+                    echo"<script>alert('Enviado com sucesso.')</script>";
+                }else{
+                    echo"<script>alert('Ocorreu um erro porfavor tente mais tarde')</script>";
+                }
+            }else{
+                echo"<script>alert('Porfavor digite um email valido.')</script>";
+            }
+
+        }else{
+            echo"<script>alert('Porfavor digite um email.')</script>";
+        }
+    }else if(isset($_POST['acao']) && $_POST['identificador'] == 'form_contato'){
+
+        $assunto = 'Nova mensagem do site';
+        $corpo = '';
+
+        foreach ($_POST as $key => $value) {
+            $corpo.= ucfirst($key)." : ".$value;
+            $corpo.= "<hr>";
+        }
+
+            $info = array('assunto'=>$assunto, 'corpo'=>$corpo);
+            $mail = new Email('vps.dankicode.com','testes@dankicode.com','gui123456','testes');
+            $mail->addAdress('contato@dankicode.com','testes');
+
+            $mail->formatarEmail($info);
+
+            if($mail->enviarEmail()){
+                echo"<script>alert('Enviado com sucesso')</script>";
+            }else{
+                echo"<script>alert('Não foi possivel enviar o formulario, porfavor tente mais tarde.')</script>";
+            }
+        
+
+    }
+?>

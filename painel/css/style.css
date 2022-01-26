@@ -1,0 +1,421 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.clear{
+	clear: both;
+}
+
+html,body{
+	height: 100%;
+	background-color: #F1F1F1;
+}
+
+
+.box-login{
+	width: 95%;
+	max-width: 600px;
+	background-color: #FFFFFF;
+	padding: 40px 2%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	box-shadow: 10px 10px 4px rgba(37, 37, 37, 0.25);
+}
+
+.box-login h2{
+	text-align: center;
+	font-size: 25px;
+	font-weight: 400;
+}
+
+.box-login input{
+	width: 100%;
+	padding: 15px 10px;
+	border:2px solid #CACACA;
+	border-radius: 10px;
+	margin: 10px 0;
+}
+
+.lembrar-group{
+	width: 180px;
+	float: right;
+	display: flex;
+}
+
+.lembrar-group label{
+	color: black;
+	font-size: 18px;
+}
+
+.lembrar-group > input{
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0 4px;
+	border-radius: 10px;
+	border: 2px solid #CACACA;
+	background-color: white;
+}
+.box-login input:focus{
+	transition: 0.5s;
+	border: 2px solid #444;
+	outline: none;
+}
+
+.box-login input[type=submit]{
+	width: 192px;
+	padding: 10px 0;
+	text-align: center;
+	color: white;
+	position: relative;
+	left: 50%;
+	background-color: #42E3DA;
+	border: 0;
+	cursor: pointer;
+	transform: translateX(-50%);
+}
+
+/*painel de controle*/
+
+
+.painel-menu{
+	width: 300px;
+	height: 100%;
+	overflow-y: scroll;
+	float: left;
+	background-color: #37474f;
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 999;
+}
+
+.servicos-painel{
+	width: 100%;
+}
+
+.servicos-painel > .box-opitions > h2{
+	background-color: #263238;
+	color: white;
+	padding: 10px 2%;
+}
+.servicos-painel > .box-opitions{
+	width: 100%;
+	background-color: #37474f;
+}
+
+.servicos-painel > .box-opitions > ul{
+	list-style-type: none;
+}
+
+.servicos-painel > .box-opitions > ul > li{
+	border-bottom: 2px solid #272727;
+}
+
+.servicos-painel > .box-opitions > ul > li > a{
+	 color: white;
+	 font-size: 17px;
+	 text-decoration: none;
+	 display: inline-block;
+	 width: 100%;
+	 padding: 6px 2%;
+}
+
+.painel-menu-wraper{
+	width: 300px;
+}
+
+.box-usuario{
+	text-align: center;
+	padding: 20px 10px;
+}
+
+.avatar{
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+	display: inline-block;
+	border: 2px solid #263238;
+}
+
+.usuario-avatar img{
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+	display: inline-block;
+	border: 2px solid #263238;
+}
+
+.avatar > i{
+	font-size: 40px;
+	color: white;
+	text-align: center;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+header{
+	width: calc(100% - 300px);
+	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 222;
+	background-color: #78909c;
+}
+
+.alinhe-flex{
+	display: flex;
+	justify-content: flex-end;
+	flex-wrap: nowrap;
+}
+
+.menu{
+	font-size: 22px;
+	color: white;
+	position: absolute;
+	left: 10px;
+	cursor: pointer;
+	top: 15px;
+}
+
+.pagina-inicial{
+	font-size: 20px;
+	background-color: #546e7a ;
+	color: white;
+	text-decoration: none;
+	padding: 15px 2%;
+	display: inline-block;
+}
+
+
+.logout{
+	font-size: 20px;
+	padding: 15px 15px;
+}
+
+.logout a{
+	color: white;
+	text-decoration: none;
+}
+
+
+/*conteudo do painel*/
+div.content{
+	width: calc(100% - 300px);
+	padding: 10px;
+	margin-top: 50px;
+	float: right;
+}
+
+.box-content{
+	width: 100%;
+	background-color: white;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.usuarios-online{
+	padding: 10px 2%;
+}
+
+.usuarios-online > h2{
+	color:#424242;
+	font-size: 26px;
+}
+
+.descri-online-u{
+	display: flex;
+	width: 96%;
+	border-bottom: 2px solid #999;
+	margin: 15px 2%;
+}
+
+.descri-online-u > p{
+	font-size: 22px;
+	font-size: #424242;
+	width: 50%;
+}
+
+.info-usuario{
+	display: flex;
+	width: 96%;
+	margin: 0 2%;
+}
+
+.info-usuario > p{
+	font-size: 18px;
+	color: #444;
+	padding: 4px 1.5%;
+	width: 50%;
+}
+
+.info-empresa{
+	padding: 10px 10px;
+}
+
+.info-empresa > h2{
+	font-size: 26px;
+	color: #424242;
+}
+
+.aline-box-content{
+	display: flex;
+}
+
+.info-padrao{
+	width: calc(100% / 3);
+	padding: 20px 2%;
+	margin: 0 10px;	
+}
+
+.informacao-online{
+	background-color: #F4B03E;
+}
+
+.total-visitas{
+	background-color: #E05C4E;
+}
+
+.visitas-hoje{
+	background-color: #0091ea;
+}
+/*conteudo do painel*/
+
+/*Editar usuario*/
+.alinhe-inputs{
+	width: 96%;
+	margin: 10px 2%;
+	padding: 10px 2%;
+}
+
+.alinhe-inputs label{
+	color: #444;
+	font-size: 19px;
+	font-weight: bold;
+}
+
+.alinhe-inputs input,select{
+	width: 100%;
+	padding: 10px 0;
+}
+
+.alinhe-inputs input[type=submit]{
+	width: 25%;
+	background-color: aqua;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	text-align: center;
+	border: 1px solid #37474f;
+}
+
+.alinhe-inputs textarea{
+	width: 100%;
+	padding: 10px;
+	height: 150px;
+	resize: vertical;
+}
+/*Editar usuario*/
+
+/*termina o painel*/
+
+/*atualizado usuarios*/
+.atualizado-sucesso{
+	width: 92%;
+	margin: 0 4%;
+	color: white;
+	font-size: 18px;
+	text-align: center;
+	padding: 10px 2%;
+	background-color: green;
+}
+
+.atualizado-erro{
+	width: 92%;
+	margin: 0 4%;
+	color: white;
+	font-size: 18px;
+	text-align: center;
+	padding: 10px 2%;
+	background-color: red;
+}
+/*termina atualizado usuarios*/
+
+/*começa menu-active*/
+.menu-active{
+	background-color: #474747;
+}
+
+.menu-active::before{
+	content: '>>';
+}
+/*termina menu-active*/
+
+/*começa acesso-negado*/
+.acesso-negado{
+	width: 100%;
+	background-color: red;
+	padding: 20px 2%;
+}
+.acesso-negado h2{
+	color: white;
+	text-align: center;
+	font-size: 18px;
+}
+/*termina acesso-negado*/
+
+/*tabela do listar usuarios*/
+table{
+	width: 100%;
+	border-collapse: collapse;
+}
+table tr:nth-of-type(1){
+	background-color: #0091ea;
+	color: white;
+}
+table tr:last-child{
+	border-bottom:2px solid #272727;
+}
+table tr td{
+	padding: 10px;
+}
+
+.btn-options{
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+}
+
+.edit{background-color: #F4B03E;}
+.delete{background-color: #eb5948;}
+.seta{background-color: #1084cc;}
+/*termina tabela de listar usuarios*/
+
+/*começa sistema de paginação*/
+.paginacao{
+	text-align: center;
+}
+
+.paginacao a{
+	font-size: 14px;
+	color: #666;
+	margin: 10px 8px;
+	padding: 3px 4px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	text-decoration: none;
+}
+
+.pag-select{
+	background-color: rgb(220,220,220);
+}
+/*termina sistema de paginção*/

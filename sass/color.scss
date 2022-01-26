@@ -1,0 +1,68 @@
+@mixin container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+@mixin container1 {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+@mixin clear {
+    clear: both;
+}
+
+@mixin line {
+    width: 100%;
+    background-color: $cor-branca;
+    height: 2px;
+    margin: 14px 0;
+}
+
+@mixin sucesso {
+    position: fixed;
+    top: 45px;
+    right: 10px;
+    background-color: $bg-sucesso;
+    color: $cor-branca;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 15px 15px;
+    border-radius: 10px;
+    z-index: 999;
+}
+
+@mixin erro {
+    position: fixed;
+    top: 45px;
+    right: 10px;
+    background-color: $bg-erro;
+    color: $cor-branca;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 15px 15px;
+    border-radius: 10px;
+    z-index: 999;
+}
+
+$cor-header: #3D437A;
+$cor-branca: #fff;
+$cor-ccc: #ccc;
+$cor-999: #999;
+$cor-cinza-fodan: #2E2E2E;
+$cor-titulo: #444;
+$cor-botao: #00C59E;
+$cor-botao-hover: #00b893;
+$cor-footer: #404580;
+$footer-destaque: #313462;
+$bg-especialidades: #E2E2E2;
+$bg-loading: rgba(0,0,0, 0.4);
+$bg-sucesso:#5de861;
+$bg-erro: #c92c26;
+$header-noticias:#333864;
+$destaque-noticia:#F40B5C;
+$box-pesquisa:#DDDDDD;
+$cor-6464:#646464;
+$cor-btn-leai:#00B95C;
