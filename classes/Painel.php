@@ -86,7 +86,7 @@
 		}
 
 		public static function imagemValida($imagem){
-			if($imagem['type'] == 'image/jpeg' || $imagem['type'] == 'imagem/jpg' || $imagem['type'] == 'imagem/png'){
+			if($imagem['type'] == 'image/jpeg' || $imagem['type'] == 'image/jpg' || $imagem['type'] == 'image/png'){
 				
 				$tamanho = intval($imagem['size']/1024);//vai deixar ele em kbite e vai arredondar para inteiro
 
