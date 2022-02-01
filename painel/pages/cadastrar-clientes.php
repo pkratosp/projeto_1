@@ -1,26 +1,6 @@
 <?php 
 
 verificaPermissaoPagina(2); 
-
-if(isset($_POST['acao'])){
-
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $tipo = $_POST['tipo_cliente'];
-    $cpf = $_POST['cpf'];
-    $cnpj = $_POST['cnpj'];
-    $image = $_FILES['image'];
-
-    $infoFinal = $cpf == '' ? $cnpj : $cpf;
-
-        $image = Painel::updateImage($image);
-        $arr = ['nome'=>$nome, 'email'=>$email, 'tipo'=>$tipo, 'cpf_cnpj'=>$infoFinal, 'image'=>$image, 'nome_tabela'=>'tb_admin.cliente'];
-        Painel::IncerirDepoimento($arr);
-        Painel::AtualizarAlerta('true','O cliente foi cadastrado com sucesso.');
-
-
-}
-
 ?>
 
 <div class="box-content">
@@ -30,6 +10,48 @@ if(isset($_POST['acao'])){
 	</div><!--info-empresa-->
 
     <form method="post" enctype="multipart/form-data">
+
+        <?php 
+        
+            if(isset($_POST['acao'])){
+
+                $nome = $_POST['nome'];
+                $email = $_POST['email'];
+                $tipo = $_POST['tipo_cliente'];
+                $cpf = $_POST['cpf'];
+                $cnpj = $_POST['cnpj'];
+                $image = $_FILES['image'];
+            
+                $infoFinal = $cpf == '' ? $cnpj : $cpf;
+            
+                if($nome == '' || $email == '' || $infoFinal == ''){
+                    Painel::AtualizarAlerta('erro','Campos vazios não são permitidos.');
+                }else{
+                    
+                    $verifica_cpf = MySql::conectar()->prepare("SELECT * FROM `tb_admin.clientes` WHERE cpf_cnpj = ?");
+                    $verifica_cpf->execute([$infoFinal]);
+
+                    $verifica_cnpj = MySql::conectar()->prepare("SELECT * FROM `tb_admin.clientes` WHERE cpf_cnpj = ?");
+                    $verifica_cnpj->execute([$infoFinal]);
+
+                    if($verifica_cpf->rowCount() == 1 || $verifica_cnpj->rowCount() == 1){
+                        //nao podemos cadastra
+                        Painel::AtualizarAlerta('erro','O cliente já existe.');
+                    }else{
+                        $image = Painel::updateImage($image);
+                        $pdo = MySql::conectar()->prepare("INSERT INTO `tb_admin.clientes` VALUES(null,?,?,?,?,?)");
+                        $pdo->execute([$nome,$email,$tipo,$infoFinal,$image]);
+                        Painel::AtualizarAlerta('sucesso','O cliente foi cadastrado.');
+                    }
+
+
+                    
+
+                }
+            
+            }
+        
+        ?>
 
         <div class="alinhe-inputs">
             <label>Nome:</label>

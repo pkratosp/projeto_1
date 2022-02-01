@@ -100,6 +100,7 @@
 					<h2>Gestão de Clientes</h2>
 					<ul>
 						<li><a <?php SelecioneMenu('cadastrar-clientes'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-clientes">Cadastrar Clientes</a></li>
+						<li><a <?php SelecioneMenu('gerenciar-clientes'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-clientes">Gerenciar Clientes</a></li>
 					</ul>
 			</div><!--box-opitions-->
 		</div><!--servicos-painel-->
