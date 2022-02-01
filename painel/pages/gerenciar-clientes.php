@@ -1,28 +1,58 @@
+<?php 
+
+    if(isset($_POST['buscar_cliente'])){
+        $busca = $_POST['busca'];
+        $query = " WHERE nome LIKE '%$busca%' OR email LIKE '%$busca%' OR cpf_cnpj LIKE '%$busca%' OR tipo LIKE '%$busca%' ";
+    }
+
+    @$pdo = MySql::conectar()->prepare("SELECT * FROM `tb_admin.clientes` $query");
+    $pdo->execute();
+    $clientes = $pdo->fetchAll();
+
+
+?>
+
 <div class="box-content">
 
 	<div class="info-empresa">
 			<h2><i class="far fa-address-card"></i> Gerenciar clientes</h2>
 	</div><!--info-empresa-->
 
+    <div class="busca-cliente">
+        <form method="post">
+            <h2>Buscar Clientes</h2>
+            <input type="text" name="busca" placeholder="Digite o nome, email, tipo, cnpj, cpf">
+            <input type="submit" name="buscar_cliente" value="Buscar">
+        </form>
+    </div>
 
     <div class="box-display-cliente">
+
+        <?php foreach ($clientes as $key => $value) { ?>
 
         <div class="box-cliente">
             <div class="avatar-perfil">
 
-                <i class="fas fa-user"></i>
+                <?php if($value['image'] == ''){ ?>
+                    <i class="fas fa-user"></i>
+                <?php }else{ ?>
+                
+                    <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploades/<?php echo $value['image']; ?>" alt="<?php echo $value['nome']; ?>">
+
+                <?php } ?>
 
             </div>
 
             <div class="info-cliente">
-                <p>Nome: Pedro</p>
-                <p>Email: P20142004@gmail</p>
-                <p>Tipo: físico</p>
-                <p>Cpf: 213.123.123-12</p>
-                <p>Cnpj: 23.12.313/1312-31</p>
+                <p>Nome: <?php echo $value['nome'] ?></p>
+                <p>Email: <?php echo $value['email'] ?></p>
+                <p>Tipo: <?php echo $value['tipo'] ?></p>
+                <p>Cpf/Cnpj: <?php echo $value['cpf_cnpj'] ?></p>
             </div>
-
+            
         </div><!--box-cliente-->
+
+        <?php } ?>
 
     </div><!--box-display-cliente-->
 

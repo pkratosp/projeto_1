@@ -419,3 +419,80 @@ table tr td{
 	background-color: rgb(220,220,220);
 }
 /*termina sistema de paginção*/
+
+/*pagina gerenciar clientes*/
+
+.box-display-cliente{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.box-cliente{
+	width: calc(100% / 4);
+	border: 2px solid #444;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.avatar-perfil{
+	width: 100%;
+	border-bottom: 2px solid #444;
+}
+
+.avatar-perfil > i{
+	display: block;
+	text-align: center;
+	padding: 8px;
+}
+
+.avatar-perfil > img{
+	width: 130px;
+	margin: 10px auto;
+    display: block;
+	border-radius: 10px;
+}
+
+.info-cliente{
+	color: #424242;
+	font-size: 18px;
+	font-weight: 400;
+	padding: 6px;
+}
+
+.busca-cliente{
+	width: 100%;
+	background-color: #0091ea;
+	border-radius: 10px;
+	padding: 15px;
+}
+
+.busca-cliente > form > h2{
+	color: #FFFFFF;
+	padding: 10px 0;
+	font-size: 28px;
+}
+
+.busca-cliente > form > input[type=text]{
+	width: 70%;
+	padding: 10px;
+	background-color: #FFFFFF;
+	border: 0;
+	border-radius: 8px;
+}
+
+.busca-cliente > form > input[type=submit]{
+	width: 150px;
+	display: block;
+	padding: 10px;
+	background-color: #1084cc;
+	border: 0;
+	border-radius: 8px;
+	border: 2px solid #FFFFFF;
+	color: #FFFFFF;
+	cursor: pointer;
+	margin: 15px 0;
+}
+
+/*termina gerenciar clientes*/
