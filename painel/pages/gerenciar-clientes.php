@@ -1,5 +1,15 @@
 <?php 
 
+    if(isset($_GET['excluir'])){
+        $idExcluir = $_GET['excluir'];
+        $selecione = MySql::conectar()->prepare("SELECT * FROM `tb_admin.clientes` WHERE id = ?");
+        $selecione->execute([$idExcluir]);
+
+        $imagem = $selecione->fetch()['image'];
+        Painel::deletar('tb_admin.clientes',$idExcluir);
+        Painel::deleteImagem($imagem);
+    }
+
     if(isset($_POST['buscar_cliente'])){
         $busca = $_POST['busca'];
         $query = " WHERE nome LIKE '%$busca%' OR email LIKE '%$busca%' OR cpf_cnpj LIKE '%$busca%' OR tipo LIKE '%$busca%' ";
@@ -48,6 +58,9 @@
                 <p>Email: <?php echo $value['email'] ?></p>
                 <p>Tipo: <?php echo $value['tipo'] ?></p>
                 <p>Cpf/Cnpj: <?php echo $value['cpf_cnpj'] ?></p>
+                <a href="<?php echo INCLUDE_PATH_PAINEL ?>edite-cliente?id=<?php echo $value['id'] ?>" class="btn-editar-cliente"><i class="far fa-edit" aria-hidden="true"></i> Editar</a>
+                <a acationBtn="delete" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-clientes?excluir=<?php echo $value['id'] ?>" class="btn-excluir-cliente"><i class="fas fa-minus-circle" aria-hidden="true"></i> Excluir</a>
+              
             </div>
             
         </div><!--box-cliente-->

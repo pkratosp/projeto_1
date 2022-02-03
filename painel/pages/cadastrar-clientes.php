@@ -114,11 +114,6 @@ verificaPermissaoPagina(2);
         </div><!--alinhe-inputs-->
 
         <div class="alinhe-inputs">
-            <label>Intervalo:</label>
-            <input type="text" name="intervalo">
-        </div><!--alinhe-inputs-->
-
-        <div class="alinhe-inputs">
             <label>Vencimento:</label>
             <input type="text" name="vencimento">
         </div><!--alinhe-inputs-->
