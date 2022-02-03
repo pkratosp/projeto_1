@@ -105,6 +105,17 @@
 			</div><!--box-opitions-->
 		</div><!--servicos-painel-->
 
+
+		<div class="servicos-painel">
+			<div class="box-opitions">
+					<h2>Gestão Financera</h2>
+					<ul>
+						<li><a <?php SelecioneMenu('cadastrar-clientes'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-clientes">Cadastrar Clientes</a></li>
+					</ul>
+			</div><!--box-opitions-->
+		</div><!--servicos-painel-->
+
+
 	</div><!--painel-menu-wraper-->
 </div><!--painel--menu-->
 
