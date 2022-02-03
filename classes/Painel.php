@@ -299,6 +299,17 @@
 				Painel::update(array('nome_tabela'=>$tabela,'id'=>$infoItemAtual['id'],'order_id'=>$itemBefore['order_id']));
 			}
 		}
+
+		public static function CarregarJs($files,$page){
+			$url = explode('/', @$_GET['url'])[0];
+			if($page == $url){
+				foreach ($files as $key => $value) {
+					echo'<script src="'.INCLUDE_PATH_PAINEL.'js/'.$value.'"></script>';
+				}
+			}
+		}
+
+
 	}
 
 ?>

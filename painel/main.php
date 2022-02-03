@@ -9,6 +9,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Painel</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zebra_datepicker@latest/dist/css/default/zebra_datepicker.min.css">
 	<link rel="stylesheet" href="<?php echo INCLUDE_PATH_PAINEL ?>css/style.css">
 	<script src="https://kit.fontawesome.com/e603a9b5dc.js" crossorigin="anonymous"></script>
 </head>
@@ -108,9 +109,9 @@
 
 		<div class="servicos-painel">
 			<div class="box-opitions">
-					<h2>Gestão Financera</h2>
+					<h2>Controle Financero</h2>
 					<ul>
-						<li><a <?php SelecioneMenu('cadastrar-clientes'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-clientes">Cadastrar Clientes</a></li>
+						<li><a <?php SelecioneMenu('visualizar-pagamentos'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-pagamentos">Visualizar pagamentos</a></li>
 					</ul>
 			</div><!--box-opitions-->
 		</div><!--servicos-painel-->
@@ -149,7 +150,8 @@
 <script src="js/jquery.mask.js"></script>
 <script src="js/script.js"></script>
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/zebra_datepicker@1.9.13/dist/zebra_datepicker.min.js"></script>
+<?php Painel::CarregarJs(['jquery.maskMoney.js'],'cadastrar-clientes') ?>
 <script>
   tinymce.init({
 	selector: '#mytextarea',

@@ -90,4 +90,16 @@ $(document).ready(function(){
 		}
 	})
 
+	//formato da pagina de cadastrar-clientes
+
+	$('[name=parcelas],[name=intervalo]').mask('99')
+	$('[name=pagamento]').maskMoney({
+		prefix:'R$',
+		allowNegative:true,
+		thousands:'.',
+		decimal:',',
+		affixesStay:false
+	})
+	$('[name=vencimento]').Zebra_DatePicker();
+
 })
