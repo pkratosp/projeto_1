@@ -16,7 +16,6 @@
     <form method="post" enctype="multipart/form-data">
 
     <?php  
-                
          if(isset($_POST['atualizar'])){
             $nome = $_POST['nome'];
             $email = $_POST['email'];
@@ -34,17 +33,15 @@
                 if(Painel::imagemValida($imagem)){
                     Painel::deleteImagem($imagem_atual);
                     $imagem = Painel::updateImage($imagem);
-                    $arr = ['nome'=>$nome,'email'=>$email,'tipo'=>$tipo,'cpf_cnpj'=>$infoFinal,'image'=>$imagem,'nome_tabela'=>'tb_admin.clientes'];
-                    Painel::update($arr);
+                    //atualizar as informaçao
                     Painel::AtualizarAlerta('sucesso','O cliente foi atualizado com uma nova imagem!');
                 }else{
                     Painel::AtualizarAlerta('erro','O cliente não pode ser atualizado');
                 }
 
             }else{
-
-                $arr = ['nome'=>$nome,'email'=>$email,'tipo'=>$tipo,'cpf_cnpj'=>$infoFinal,'image'=>$imagem,'nome_tabela'=>'tb_admin.clientes'];
-                Painel::update($arr);
+                $imagem = $imagem_atual;
+                //atualizar as informaçao
                 Painel::AtualizarAlerta('sucesso','O cliente foi atualizado com sucesso!');
             }
 
@@ -71,12 +68,12 @@
             </select>
         </div><!--alinhe-inputs-->
 
-        <div rel="cpf" class="alinhe-inputs">
+        <div <?php if($cliente['tipo'] != 'fisico'){ ?> style="display:none;" <?php } ?> rel="cpf" class="alinhe-inputs">
             <label>CPF:</label>
             <input type="text" name="cpf" value="<?php echo $cliente['cpf_cnpj'] ?>">
         </div><!--alinhe-inputs-->
 
-        <div style="display:none;" rel="cnpj" class="alinhe-inputs">
+        <div <?php if($cliente['tipo'] != 'juridico'){ ?> style="display:none;" <?php } ?> rel="cnpj" class="alinhe-inputs">
             <label>CNPJ:</label>
             <input type="text" name="cnpj" value="<?php echo $cliente['cpf_cnpj'] ?>">
         </div><!--alinhe-inputs-->

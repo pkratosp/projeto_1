@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 	//mask parar o cnpj e o cpf
 	$('[name=cpf]').mask('999.999.999-99')
-	$('[name=cnpj').mask('99.99.999/9999-99')
+	$('[name=cnpj]').mask('99.99.999/9999-99')
 
 	$('[name=tipo_cliente]').change(function(){
 		let valor = $(this).val();
