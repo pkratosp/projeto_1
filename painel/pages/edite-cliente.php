@@ -6,6 +6,7 @@
         echo '<script>alert("Você não pode acessar está pagina")</script>';
         die();
     }
+
 ?>
 <div class="box-content">
 
@@ -15,42 +16,51 @@
 
     <form method="post" enctype="multipart/form-data">
 
-    <?php  
-         if(isset($_POST['atualizar'])){
-            $nome = $_POST['nome'];
-            $email = $_POST['email'];
-            $tipo = $_POST['tipo_cliente'];
-            $cpf = $_POST['cpf'];
-            $cnpj = $_POST['cnpj'];
-            $infoFinal = $cpf == '' ? $cnpj : $cpf;
-            $imagem = $_FILES['image'];
-            $imagem_atual = $_POST['image_atual'];
+        <?php 
+            //editar cliente
+            if(isset($_POST['atualizar'])){
+                $nome = $_POST['nome'];
+                $email = $_POST['email'];
+                $tipo = $_POST['tipo_cliente'];
+                $cpf = $_POST['cpf'];
+                $cnpj = $_POST['cnpj'];
+                $infoFinal = $cpf == '' ? $cnpj : $cpf;
+                $imagem = $_FILES['image'];
+                $imagem_atual = $_POST['image_atual'];
 
+                if($imagem['name'] != ''){
+                    //temos que atualizar a imagem
 
-            if($imagem['name'] != ''){
-                //temos que atualizar a imagem
+                    if(Painel::imagemValida($imagem)){
+                        Painel::deleteImagem($imagem_atual);
+                        $imagem = Painel::updateImage($imagem);
+                        
+                        $arr = ['nome'=>$nome,'email'=>$email,'tipo'=>$tipo,'cpf_cnpj'=>$infoFinal,'image'=>$imagem,'id'=>$id,'nome_tabela'=>'tb_admin.clientes'];
+                        Painel::update($arr);
+                        $cliente = Painel::select('tb_admin.clientes','id=?',array($id));
 
-                if(Painel::imagemValida($imagem)){
-                    Painel::deleteImagem($imagem_atual);
-                    $imagem = Painel::updateImage($imagem);
-                    //atualizar as informaçao
-                    Painel::AtualizarAlerta('sucesso','O cliente foi atualizado com uma nova imagem!');
+                        Painel::AtualizarAlerta('sucesso','O cliente foi atualizado com uma nova imagem!');
+                    }else{
+                        Painel::AtualizarAlerta('erro','O cliente não pode ser atualizado');
+                    }
+
                 }else{
-                    Painel::AtualizarAlerta('erro','O cliente não pode ser atualizado');
+                    if($cpf == ''){
+                        
+                    }
+                    $imagem = $imagem_atual;
+                    $arr = ['nome'=>$nome,'email'=>$email,'tipo'=>$tipo,'cpf_cnpj'=>$infoFinal,'image'=>$imagem,'id'=>$id,'nome_tabela'=>'tb_admin.clientes'];
+                    Painel::update($arr);
+                    $cliente = Painel::select('tb_admin.clientes','id=?',array($id));
+                    Painel::AtualizarAlerta('sucesso','O cliente foi atualizado com sucesso!');
                 }
 
-            }else{
-                $imagem = $imagem_atual;
-                //atualizar as informaçao
-                Painel::AtualizarAlerta('sucesso','O cliente foi atualizado com sucesso!');
             }
 
 
-         }
+        ?>
 
-    ?>
-
-<div class="alinhe-inputs">
+        <div class="alinhe-inputs">
             <label>Nome:</label>
             <input type="text" name="nome" value="<?php echo $cliente['nome'] ?>">
         </div><!--alinhe-inputs-->
@@ -95,6 +105,27 @@
 	</div><!--info-empresa-->
 
     <form method="post">
+
+        <?php 
+
+            if(isset($_POST['pagar'])){
+                $cliente_id = $id;
+                $nome_pagamento = $_POST['nome_pagamento'];
+                $valor = $_POST['pagamento'];
+                $parcelas = $_POST['parcelas'];
+                $intervalo = $_POST['intervalo'];
+                $vencimentoOriginal = $_POST['vencimento'];
+
+                for($i = 0; $i < $parcelas; $i++){
+                    $vencimento = strtotime($vencimentoOriginal) + (($i * $intervalo) * (60*60*24));
+                    $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.financero` VALUES(null,?,?,?,?,?)");
+                    $sql->execute([$cliente_id,$nome_pagamento,$valor,date('Y-m-d',$vencimento),'0']);
+                }
+                Painel::AtualizarAlerta('sucesso','O pagamento foi adicionado com sucesso!');
+
+            }
+            
+        ?>
 
         <div class="alinhe-inputs">
             <label>Nome do pagamento:</label>

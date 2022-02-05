@@ -43,7 +43,7 @@
         <div class="box-cliente">
             <div class="avatar-perfil">
 
-                <?php if($value['image'] == ''){ ?>
+                <?php if($value['image'] == 'semfoto'){ ?>
                     <i class="fas fa-user"></i>
                 <?php }else{ ?>
                 

@@ -38,10 +38,21 @@ verificaPermissaoPagina(2);
                         //nao podemos cadastra
                         Painel::AtualizarAlerta('erro','O cliente já existe.');
                     }else{
-                        $image = Painel::updateImage($image);
-                        $pdo = MySql::conectar()->prepare("INSERT INTO `tb_admin.clientes` VALUES(null,?,?,?,?,?)");
-                        $pdo->execute([$nome,$email,$tipo,$infoFinal,$image]);
-                        Painel::AtualizarAlerta('sucesso','O cliente foi cadastrado.');
+                        
+
+                        if($image['name'] != ''){
+                            //temos uma imagem
+                            $image = Painel::updateImage($image);
+                            $arr = ['nome'=>$nome,'email'=>$email,'tipo'=>$tipo,'cpf_cnpj'=>$infoFinal,'image'=>$image,'order_id'=>'0','nome_tabela'=>'tb_admin.clientes'];
+                            Painel::IncerirDepoimento($arr);
+                            Painel::AtualizarAlerta('sucesso','O cliente foi cadastrado com uma foto.');
+                        }else if($image['name'] == ''){
+                            //nao temos uma imagem
+                            $arr = ['nome'=>$nome,'email'=>$email,'tipo'=>$tipo,'cpf_cnpj'=>$infoFinal,'image'=>'semfoto','order_id'=>'0','nome_tabela'=>'tb_admin.clientes'];
+                            Painel::IncerirDepoimento($arr);
+                            Painel::AtualizarAlerta('sucesso','O cliente foi cadastrado sem foto');
+
+                        }
                     }
 
 
