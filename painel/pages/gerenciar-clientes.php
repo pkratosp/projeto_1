@@ -33,6 +33,11 @@
             <h2>Buscar Clientes</h2>
             <input type="text" name="busca" placeholder="Digite o nome, email, tipo, cnpj, cpf">
             <input type="submit" name="buscar_cliente" value="Buscar">
+            <?php 
+                if(isset($_POST['buscar_cliente'])){
+                    echo'Foram encontrados <b>'.count($clientes).'</b> resultado(s)';
+                }
+            ?>
         </form>
     </div>
 
