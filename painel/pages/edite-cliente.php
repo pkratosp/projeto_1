@@ -188,8 +188,8 @@
         </tr>
 
         <?php 
-            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financero` WHERE status = ? ORDER BY vencimento ASC");
-            $sql->execute([0]);
+            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financero` WHERE status = ? AND cliente_id = ? ORDER BY vencimento ASC");
+            $sql->execute([0,$id]);
             $pendentes = $sql->fetchAll();
 
             
@@ -231,8 +231,8 @@
         </tr>
 
         <?php 
-            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financero` WHERE status = ? ORDER BY vencimento ASC");
-            $sql->execute([1]);
+            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financero` WHERE status = ? AND cliente_id = ? ORDER BY vencimento ASC");
+            $sql->execute([1,$id]);
             $pendentes = $sql->fetchAll();
 
             
