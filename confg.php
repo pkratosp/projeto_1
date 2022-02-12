@@ -30,7 +30,7 @@
 
 	//MYSQL A VARIAVEL ESTA NA PASTA classes
 	define('HOST','localhost');
-	define('DATABASE','cusro_projeto_01');
+	define('DATABASE','projeto_1');
 	define('USER','root');
 	define('PASSWORD','');
 
