@@ -1,5 +1,5 @@
 <?php 
-    $editarSite = MySql::conectar()->prepare("SELECT * FROM `tb_admin.confg`");
+    $editarSite = MySql::conectar()->prepare("SELECT * FROM `tb_site.config`");
     $editarSite->execute();
     $editarSite = $editarSite->fetch();
 ?>
@@ -15,7 +15,7 @@
             if(isset($_POST['acao'])){
                 if(Painel::update($_POST,true)){
                     Painel::AtualizarAlerta('sucesso','O site foi editado com sucesso.');
-                    $editarSite = MySql::conectar()->prepare("SELECT * FROM `tb_admin.confg`");
+                    $editarSite = MySql::conectar()->prepare("SELECT * FROM `tb_site.config`");
                     $editarSite->execute();
                     $editarSite = $editarSite->fetch();
                 }else{
@@ -26,17 +26,17 @@
 
         <div class="alinhe-inputs">
             <label>Nome do site:</label>
-            <input type="text" name="titulo_site" value="<?php echo $editarSite['titulo_site']; ?>" >
+            <input type="text" name="titulo" value="<?php echo $editarSite['titulo']; ?>" >
         </div><!--alinhe-inputs-->
 
         <div class="alinhe-inputs">
             <label>Nome do autor do site:</label>
-            <input type="text" name="nome_author" value="<?php echo $editarSite['nome_author']; ?>" >
+            <input type="text" name="nome_autor" value="<?php echo $editarSite['nome_autor']; ?>" >
         </div><!--alinhe-inputs-->
 
         <div class="alinhe-inputs">
             <label>Descrição do autor do site:</label>
-            <textarea name="descri_author" placeholder="depoimentos"><?php echo $editarSite['descri_author']; ?></textarea>
+            <textarea name="descricao" placeholder="depoimentos"><?php echo $editarSite['descricao']; ?></textarea>
         </div><!--alinhe-inputs-->
         
         <?php for($i = 1; $i <= 6; $i++){ ?>
@@ -48,13 +48,13 @@
 
         <div class="alinhe-inputs">
             <label>Descrição <?php echo $i; ?>:</label>
-            <textarea name="descri<?php echo $i ?>"><?php echo $editarSite['descri'.$i] ?></textarea>
+            <textarea name="descricao<?php echo $i ?>"><?php echo $editarSite['descricao'.$i] ?></textarea>
         </div><!--alinhe-inputs-->       
 
         <?php } ?>
 
         <div class="alinhe-inputs">
-            <input type="hidden" name="nome_tabela" value="tb_admin.confg">
+            <input type="hidden" name="nome_tabela" value="tb_site.config">
             <input type="submit" name="acao" value="Cadastrar">
         </div><!--alinhe-inputs-->
 

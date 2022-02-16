@@ -29,7 +29,7 @@
 
         <div class="alinhe-inputs">
             <label>Depoimento:</label>
-            <textarea name="servicos"><?php echo $servicos['servicos']; ?></textarea>
+            <textarea name="servico"><?php echo $servicos['servico']; ?></textarea>
         </div><!--alinhe-inputs-->
 
         <div class="alinhe-inputs">

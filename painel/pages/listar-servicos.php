@@ -29,7 +29,7 @@
         <?php foreach ($servicos as $key => $value) { ?>
 
             <tr>
-                <td><?php echo $value['servicos']; ?></td>
+                <td><?php echo $value['servico']; ?></td>
                 <td><a class="btn-options edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-servicos?id=<?php echo $value['id'] ?>"><i class="far fa-edit"></i> Editar</a></td>
                 <td><a acationBtn="delete" class="btn-options delete" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-servicos?excluir=<?php echo $value['id']; ?>"><i class="fas fa-minus-circle"></i> Excluir</td></td>
                 <td><a class="btn-options seta" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-servicos?order=up&id=<?php echo $value['id'] ?>"><i class="fas fa-chevron-up"></i></a></td>

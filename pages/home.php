@@ -26,8 +26,8 @@
         <div class="container">
 
             <div class="part1">
-                <h2><?php echo $infoSite['nome_author'] ?></h2>
-                <p><?php echo $infoSite['descri_author']; ?></p>
+                <h2><?php echo $infoSite['nome_autor'] ?></h2>
+                <p><?php echo $infoSite['descricao']; ?></p>
             </div><!--part1-->
 
             <div class="part2"></div><!--part2-->
@@ -42,32 +42,32 @@
         <div class="container">
             <div class="especi-1 especi-padrao">
                 <div><i class="<?php echo $infoSite['icone1'] ?>"></i></div>
-                <p><?php echo $infoSite['descri1'] ?></p>
+                <p><?php echo $infoSite['descricao1'] ?></p>
             </div>
 
             <div class="especi-2 especi-padrao">
                 <div><i class="<?php echo $infoSite['icone2'] ?>"></i></div>
-                <p><?php echo $infoSite['descri2'] ?></p>
+                <p><?php echo $infoSite['descricao2'] ?></p>
             </div>
 
             <div class="especi-3 especi-padrao">
                 <div><i class="<?php echo $infoSite['icone3'] ?>"></i></div>
-                <p><?php echo $infoSite['descri3'] ?></p>
+                <p><?php echo $infoSite['descricao3'] ?></p>
             </div>
 
             <div class="especi-4 especi-padrao">
                 <div><i class="<?php echo $infoSite['icone4'] ?>"></i></div>
-                <p><?php echo $infoSite['descri4'] ?></p>
+                <p><?php echo $infoSite['descricao4'] ?></p>
             </div>
 
             <div class="especi-5 especi-padrao">
                 <div><i class="<?php echo $infoSite['icone5'] ?>"></i></div>
-                <p><?php echo $infoSite['descri5'] ?></p>
+                <p><?php echo $infoSite['descricao5'] ?></p>
             </div>
 
             <div class="especi-6 especi-padrao">
                 <div><i class="<?php echo $infoSite['icone6'] ?>"></i></div>
-                <p><?php echo $infoSite['descri6'] ?></p>
+                <p><?php echo $infoSite['descricao6'] ?></p>
             </div>
 
 
@@ -87,7 +87,7 @@
 
                 <?php foreach ($depoimentos as $key => $value) { ?>
 
-                <p><?php echo $value['depoimentos']; ?><p>
+                <p><?php echo $value['depoimento']; ?><p>
                 <strong><?php echo $value['nome']; ?></strong>
                 <div class="line"></div>
 
@@ -103,7 +103,7 @@
                         $servicos->execute(); 
                     ?>
                     <?php foreach ($servicos as $key => $value) { ?>
-                        <li><?php echo $value['servicos']; ?></li>
+                        <li><?php echo $value['servico']; ?></li>
                     <?php } ?>
                 </ul>
             </div><!--part2__servicos-->

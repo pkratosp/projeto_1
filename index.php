@@ -2,7 +2,7 @@
     include('confg.php');
 
     Site::updateUsuarioOnline();
-    $infoSite = MySql::conectar()->prepare("SELECT * FROM `tb_admin.confg`");
+    $infoSite = MySql::conectar()->prepare("SELECT * FROM `tb_site.config`");
     $infoSite->execute();
     $infoSite = $infoSite->fetch();
 ?>
@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/e603a9b5dc.js" crossorigin="anonymous"></script>
-    <title><?php echo $infoSite['titulo_site']; ?></title>
+    <title><?php echo $infoSite['titulo']; ?></title>
 </head>
 <body id="alinhe-flex">
 

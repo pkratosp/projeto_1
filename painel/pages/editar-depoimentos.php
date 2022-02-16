@@ -34,7 +34,7 @@
 
         <div class="alinhe-inputs">
             <label>Depoimento:</label>
-            <textarea name="depoimentos" placeholder="depoimentos"><?php echo $depoimentos['depoimentos']; ?></textarea>
+            <textarea name="depoimento" placeholder="depoimentos"><?php echo $depoimentos['depoimento']; ?></textarea>
         </div><!--alinhe-inputs-->
 
         <div class="alinhe-inputs">

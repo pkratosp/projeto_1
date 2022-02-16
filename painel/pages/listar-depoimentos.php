@@ -33,7 +33,7 @@
 
             <tr>
                 <td><?php echo $value['nome']; ?></td>
-                <td><?php echo $value['depoimentos']; ?></td>
+                <td><?php echo $value['depoimento']; ?></td>
                 <td><?php echo $value['data']; ?></td>
                 <td><a class="btn-options edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-depoimentos?id=<?php echo $value['id']; ?>"><i class="far fa-edit"></i> Editar</a></td>
                 <td><a acationBtn="delete" class="btn-options delete" href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-depoimentos?excluir=<?php echo $value['id']; ?>"><i class="fas fa-minus-circle"></i> Excluir</td></td>
