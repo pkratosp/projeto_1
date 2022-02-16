@@ -54,7 +54,7 @@
                     $nome = 0;
                 }
 
-                $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financero` WHERE status = ? ORDER BY vencimento ASC");
+                $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financeiro` WHERE status = ? ORDER BY vencimento ASC");
                 $sql->execute([$nome]);
                 $pendentes = $sql->fetchAll();
 

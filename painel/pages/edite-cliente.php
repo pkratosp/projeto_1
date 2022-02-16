@@ -90,7 +90,7 @@
 
         <div class="alinhe-inputs">
             <label>Imagem:</label>
-            <input type="hidden" name="image_atual" value="<?php echo $cliente['image'] ?>"> 
+            <input type="hidden" name="image_atual" value="<?php echo $cliente['imagem'] ?>"> 
             <input type="file" name="image">
         </div><!--alinhe-inputs-->
 
@@ -121,7 +121,7 @@
                 }else{
                     for($i = 0; $i < $parcelas; $i++){
                         $vencimento = strtotime($vencimentoOriginal) + (($i * $intervalo) * (60*60*24));
-                        $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.financero` VALUES(null,?,?,?,?,?)");
+                        $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.financeiro` VALUES(null,?,?,?,?,?)");
                         $sql->execute([$cliente_id,$nome_pagamento,$valor,date('Y-m-d',$vencimento),'0']);
                     }
                     Painel::AtualizarAlerta('sucesso','O(s) pagamento(s) foi(foram) adicionado(s) com sucesso!');
@@ -165,7 +165,7 @@
     <?php 
 
         if(isset($_GET['pago'])){
-            $pagar = MySql::conectar()->prepare("UPDATE `tb_admin.financero` SET status = ? WHERE id = ?");
+            $pagar = MySql::conectar()->prepare("UPDATE `tb_admin.financeiro` SET status = ? WHERE id = ?");
             $pagar->execute([1,$_GET['pago']]);
             Painel::AtualizarAlerta('sucesso','O pagamento foi concluído com sucesso!');
         }
@@ -188,7 +188,7 @@
         </tr>
 
         <?php 
-            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financero` WHERE status = ? AND cliente_id = ? ORDER BY vencimento ASC");
+            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financeiro` WHERE status = ? AND cliente_id = ? ORDER BY vencimento ASC");
             $sql->execute([0,$id]);
             $pendentes = $sql->fetchAll();
 
@@ -231,7 +231,7 @@
         </tr>
 
         <?php 
-            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financero` WHERE status = ? AND cliente_id = ? ORDER BY vencimento ASC");
+            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financeiro` WHERE status = ? AND cliente_id = ? ORDER BY vencimento ASC");
             $sql->execute([1,$id]);
             $pendentes = $sql->fetchAll();
 

@@ -264,6 +264,7 @@ div.content{
 .info-empresa > h2{
 	font-size: 26px;
 	color: #424242;
+	margin: 20px 0;
 }
 
 .aline-box-content{
@@ -399,6 +400,14 @@ table tr td{
 .edit{background-color: #F4B03E;}
 .delete{background-color: #eb5948;}
 .seta{background-color: #1084cc;}
+
+.gerar-pdf{
+	background-color: #eb5948;
+	border: 2px solid salmon;
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+}
 /*termina tabela de listar usuarios*/
 
 /*começa sistema de paginação*/

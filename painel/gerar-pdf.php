@@ -5,8 +5,8 @@ include('templateFinancero.php');
 $conteudo = ob_get_contents();
 ob_end_clean();
 
-$mpdf = new Mpdf();
-$mpdf->WriteHTML($conteudo);
-$mpdf->Output();
+$mdpf = new \Mpdf\Mpdf();
+$mdpf->WriteHTML($conteudo);
+$mdpf->Output();
 
 ?>  

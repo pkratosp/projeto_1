@@ -45,7 +45,7 @@
 
                 $porpagina = 10;
                 if(!isset($_POST['parametro'])){
-                    if($sql['nome'] == ''){
+                    if(@$sql['nome'] == ''){
                         echo'<div class="titulo-noticia"><h2>Visualizando todos os Posts</h2></div>';
                     }else{
                         echo'<div class="titulo-noticia"><h2>Visualizando posts em '.$sql['nome'].'.</h2></div>';
@@ -55,7 +55,7 @@
                 }
 
                 $query = "SELECT * FROM `tb_site.noticias`";
-                if($sql['nome'] != ''){
+                if(@$sql['nome'] != ''){
                     $sql['id'] = (int)$sql['id'];
                     $query.="WHERE categoria_id = $sql[id]";
                 }
@@ -72,7 +72,7 @@
                 }
 
                 $query2 = "SELECT * FROM `tb_site.noticias`";
-                if($sql['nome'] != ''){
+                if(@$sql['nome'] != ''){
                     $sql['id'] = (int)$sql['id'];
                     $query2.=" WHERE categoria_id = $sql[id]";
                 }
@@ -134,7 +134,7 @@
                     <?php 
                         if(!isset($_POST['parametro'])){
                             for ($i=1; $i <= $totalpagina; $i++) { 
-                                $catStr = ($sql['nome'] != '') ? '/'.$sql['slug'] : '';
+                                $catStr = (@$sql['nome'] != '') ? '/'.$sql['slug'] : '';
                                 if($pagina == $i){
                                     echo '<a class="pag-select" href="'.INCLUDE_PATH.'noticias'.$catStr.'?pagina='.$i.'">'.$i.'</a>';
                                 }else{

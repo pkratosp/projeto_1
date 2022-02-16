@@ -48,11 +48,11 @@
         <div class="box-cliente">
             <div class="avatar-perfil">
 
-                <?php if($value['image'] == 'semfoto'){ ?>
+                <?php if($value['imagem'] == 'semfoto'){ ?>
                     <i class="fas fa-user"></i>
                 <?php }else{ ?>
                 
-                    <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploades/<?php echo $value['image']; ?>" alt="<?php echo $value['nome']; ?>">
+                    <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploades/<?php echo $value['imagem']; ?>" alt="<?php echo $value['nome']; ?>">
 
                 <?php } ?>
 

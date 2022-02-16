@@ -78,7 +78,7 @@
 			<div class="box-opitions">
 					<h2>Configurações geral</h2>
 					<ul>
-						<li><a <?php SelecioneMenu('editar'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>editar-site">Editar</a></li>
+						<li><a <?php SelecioneMenu('editar-site'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>editar-site">Editar</a></li>
 					</ul>
 			</div><!--box-opitions-->
 		</div><!--servicos-painel-->
