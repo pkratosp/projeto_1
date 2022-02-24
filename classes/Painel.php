@@ -90,7 +90,7 @@
 				
 				$tamanho = intval($imagem['size']/1024);//vai deixar ele em kbite e vai arredondar para inteiro
 
-				if($tamanho < 300){
+				if($tamanho < 900){
 					return true;
 				}else {
 					return false;

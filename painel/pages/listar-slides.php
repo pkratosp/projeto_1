@@ -4,6 +4,8 @@
 			<h2><i class="far fa-address-card"></i> Slides Cadastrados</h2>
 	</div><!--info-empresa-->
 
+    <div class="wraper-table">
+
     <table>
         <?php 
             if(isset($_GET['excluir'])){
@@ -45,6 +47,8 @@
 
         <?php } ?>
     </table>
+
+    </div><!--wraper-table-->
 
     <div class="paginacao">
         <?php 

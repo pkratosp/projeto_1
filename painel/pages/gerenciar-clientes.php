@@ -63,8 +63,8 @@
                 <p>Email: <?php echo $value['email'] ?></p>
                 <p>Tipo: <?php echo $value['tipo'] ?></p>
                 <p>Cpf/Cnpj: <?php echo $value['cpf_cnpj'] ?></p>
-                <a href="<?php echo INCLUDE_PATH_PAINEL ?>edite-cliente?id=<?php echo $value['id'] ?>" class="btn-editar-cliente"><i class="far fa-edit" aria-hidden="true"></i> Editar</a>
-                <a acationBtn="delete" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-clientes?excluir=<?php echo $value['id'] ?>" class="btn-excluir-cliente"><i class="fas fa-minus-circle" aria-hidden="true"></i> Excluir</a>
+                <a href="<?php echo INCLUDE_PATH_PAINEL ?>edite-cliente?id=<?php echo $value['id'] ?>" class="btn-editar-cliente edit"><i class="far fa-edit" aria-hidden="true"></i> Editar</a>
+                <a acationBtn="delete" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-clientes?excluir=<?php echo $value['id'] ?>" class="btn-excluir-cliente delete"><i class="fas fa-minus-circle" aria-hidden="true"></i> Excluir</a>
               
             </div>
             

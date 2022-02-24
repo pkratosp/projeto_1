@@ -121,6 +121,7 @@
 					<h2>Cadastrar produtos</h2>
 					<ul>
 						<li><a <?php SelecioneMenu('cadastrar-produtos'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-produtos">Cadastrar Produtos</a></li>
+						<li><a <?php SelecioneMenu('visualizar-produtos'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-produtos">Visualizar Produtos</a></li>
 					</ul>
 			</div><!--box-opitions-->
 		</div><!--servicos-painel-->
@@ -135,7 +136,7 @@
 		</div><!--menu-->
 
 			<a class="pagina-inicial" href="<?php echo INCLUDE_PATH_PAINEL ?>"><i class="fas fa-home"></i>Página Inicial</a>
-	
+			<a class="pagina-inicial-mobile" href="<?php echo INCLUDE_PATH_PAINEL ?>"><i class="fas fa-home"></i></a>
 
 		<div class="logout">
 			<a href="<?php echo INCLUDE_PATH_PAINEL ?>?logout"><i class="fas fa-sign-out-alt"></i>Sair</a>

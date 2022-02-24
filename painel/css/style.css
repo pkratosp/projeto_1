@@ -186,7 +186,7 @@ header{
 	top: 15px;
 }
 
-.pagina-inicial{
+.pagina-inicial,.pagina-inicial-mobile{
 	font-size: 20px;
 	background-color: #546e7a ;
 	color: white;
@@ -195,6 +195,7 @@ header{
 	display: inline-block;
 }
 
+.pagina-inicial-mobile{display: none;}
 
 .logout{
 	font-size: 20px;
@@ -375,9 +376,14 @@ div.content{
 /*termina acesso-negado*/
 
 /*tabela do listar usuarios*/
+.wraper-table{
+	overflow-x: auto;
+}
 table{
 	width: 100%;
+	min-width: 900px;
 	border-collapse: collapse;
+	overflow: scroll;
 }
 table tr:nth-of-type(1){
 	background-color: #0091ea;
@@ -394,6 +400,13 @@ table tr td{
 	padding: 10px;
 	color: white;
 	text-decoration: none;
+}
+
+.btn-editar-cliente,.btn-excluir-cliente{
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+	display: inline-block;
 }
 
 .pago{background-color: #00bfa5;}
@@ -506,3 +519,39 @@ table tr td{
 }
 
 /*termina gerenciar clientes*/
+
+@media only screen and (max-width: 750px) {
+
+	.aline-box-content{
+		display: block;
+	}
+
+	.info-padrao{
+		width: 100%;
+		padding: 20px 0%;
+		margin: 10px 0;	
+		display: inline-block;
+	}
+
+	.info-padrao h2, p{
+		text-align: center;
+	}
+
+	.pagina-inicial{
+		display: none;
+	}
+
+	.pagina-inicial-mobile{
+		display: inline-block;
+	}
+
+	.box-display-cliente{
+		display: block;
+	}
+
+	.box-cliente{
+		width: 100%;
+		margin: 10px 0;
+	}
+
+}

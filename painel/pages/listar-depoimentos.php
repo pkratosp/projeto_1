@@ -3,7 +3,7 @@
 	<div class="info-empresa">
 			<h2><i class="far fa-address-card"></i> Depoimentos cadastrados</h2>
 	</div><!--info-empresa-->
-
+    <div class="wraper-table">
     <table>
         <?php 
             
@@ -43,7 +43,8 @@
 
         <?php } ?>
     </table>
-
+    </div><!--wraper-table-->
+    
     <div class="paginacao">
         <?php 
             $totalPagina = ceil(count(Painel::SelectAll('tb_site.depoimentos')) / $porPagina);
