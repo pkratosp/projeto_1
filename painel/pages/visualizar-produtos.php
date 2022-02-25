@@ -15,11 +15,6 @@
         $query = " WHERE nome LIKE '%$busca%' OR descricao LIKE '%$busca%' OR largura LIKE '%$busca%' OR altura LIKE '%$busca%' OR comprimento LIKE '%$busca%' OR peso LIKE '%$busca%' OR quantidade LIKE '%$busca%' ";
     }
 
-    @$pdo = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque` $query");
-    $pdo->execute();
-    $produtos = $pdo->fetchAll();
-
-
 ?>
 
 <div class="box-content">
@@ -43,7 +38,26 @@
 
     <div class="box-display-cliente">
 
-        <?php foreach ($produtos as $key => $value) {
+        <?php 
+        
+        if(isset($_POST['atualizar'])){
+            $quantidade = $_POST['quantidade_atualizar'];
+            $produto_id = $_POST['produto_id'];
+            if($quantidade <= 0){
+                Painel::AtualizarAlerta('erro','Você não pode atualizar a quantidade para 0 ou menor que 0');
+            }else{
+                $sql = MySql::conectar()->prepare("UPDATE `tb_admin.estoque` SET quantidade = ? WHERE id = ?");
+                $sql->execute([$quantidade,$produto_id]);
+                Painel::AtualizarAlerta('sucesso','Você atualizou a quantidade do produto com id: <b>'.$produto_id.'</b>');
+            }
+        }
+    
+        @$pdo = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque` $query");
+        $pdo->execute();
+        $produtos = $pdo->fetchAll();
+
+
+        foreach ($produtos as $key => $value) {
         
             $imagemSingle = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque_imagens` WHERE produto_id = ?");
             $imagemSingle->execute([$value['id']]);
@@ -66,10 +80,20 @@
                 <p>Comprimento: <?php echo $value['comprimento']; ?></p>
                 <p>Peso: <?php echo $value['peso']; ?></p>
                 <p>Quantidade: <?php echo $value['quantidade']; ?></p>
+
+                <form method="post">
+                    <h2>Atualizar quantidade</h2>
+                    <input type="text" name="quantidade_atualizar" value="<?php echo $value['quantidade']; ?>">
+                    <input type="hidden" name="produto_id" value="<?php echo $value['id'] ?>">
+                    <input type="submit" name="atualizar" value="Atualizar">
+                </form>
+
                 <a href="<?php echo INCLUDE_PATH_PAINEL ?>edite-produto?id=<?php echo $value['id'] ?>" class="btn-editar-cliente edit"><i class="far fa-edit" aria-hidden="true"></i> Editar</a>
                 <a acationBtn="delete" href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-produtos?excluir=<?php echo $value['id'] ?>" class="btn-excluir-cliente delete"><i class="fas fa-minus-circle" aria-hidden="true"></i> Excluir</a>
               
             </div>
+
+            
             
         </div><!--box-cliente-->
 
