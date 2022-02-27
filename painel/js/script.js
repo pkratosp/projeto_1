@@ -50,7 +50,7 @@ $(document).ready(function(){
 				
 				$('.painel-menu').css('width','300px')
 				$('.content,header').css('width','calc(100% - 300px)')
-				$('.content,header').css('width','100%')
+				//$('.content,header').css('width','100%')
 				$('.content,header').animate({'left':'300px'}, function(){
 					open = true
 				})

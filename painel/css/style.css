@@ -268,6 +268,10 @@ div.content{
 	margin: 20px 0;
 }
 
+.info-empresa a{
+	color: #424242;
+}
+
 .aline-box-content{
 	display: flex;
 }
@@ -339,6 +343,7 @@ div.content{
 	text-align: center;
 	padding: 10px 2%;
 	background-color: green;
+	margin-bottom: 10px;
 }
 
 .atualizado-erro{
@@ -349,6 +354,16 @@ div.content{
 	text-align: center;
 	padding: 10px 2%;
 	background-color: red;
+}
+
+.atualizado-atencao{
+	width: 92%;
+	margin: 0 4%;
+	color: white;
+	font-size: 18px;
+	text-align: center;
+	padding: 10px 2%;
+	background-color: #f4a742;
 }
 /*termina atualizado usuarios*/
 
@@ -482,6 +497,32 @@ table tr td{
 	font-size: 18px;
 	font-weight: 400;
 	padding: 6px;
+}
+
+.quantidade p{
+	font-weight: bold;
+}
+
+.quantidade input[type=number]{
+	width: 100%;
+	padding: 8px;
+	background-color: #FFFFFF;
+	border: 2px solid #474747;
+	border-radius: 6px;
+	margin: 10px 0;
+}
+
+.quantidade input[type=submit]{
+	width: 100%;
+	background-color: aqua;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	text-align: center;
+	border: 1px solid #37474f;
+	margin: 10px 0;
+	padding: 10px 0;
 }
 
 .busca-cliente{

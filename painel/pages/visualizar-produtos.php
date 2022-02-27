@@ -1,26 +1,13 @@
 <?php 
 
-    if(isset($_GET['excluir'])){
-        $idExcluir = $_GET['excluir'];
-        $selecione = MySql::conectar()->prepare("SELECT * FROM `tb_admin.clientes` WHERE id = ?");
-        $selecione->execute([$idExcluir]);
-
-        $imagem = $selecione->fetch()['image'];
-        Painel::deletar('tb_admin.clientes',$idExcluir);
-        Painel::deleteImagem($imagem);
-    }
-
-    if(isset($_POST['buscar_produto'])){
-        $busca = $_POST['busca'];
-        $query = " WHERE nome LIKE '%$busca%' OR descricao LIKE '%$busca%' OR largura LIKE '%$busca%' OR altura LIKE '%$busca%' OR comprimento LIKE '%$busca%' OR peso LIKE '%$busca%' OR quantidade LIKE '%$busca%' ";
-    }
+    if(isset($_GET['pendentes']) == false){
 
 ?>
 
 <div class="box-content">
 
 	<div class="info-empresa">
-			<h2><i class="far fa-address-card"></i> Gerenciar produtos</h2>
+			<h2><i class="far fa-address-card"></i> <a href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-produtos">Produtos no estoque</a></h2>
 	</div><!--info-empresa-->
 
     <div class="busca-cliente">
@@ -28,11 +15,6 @@
             <h2>Buscar pelos produtos</h2>
             <input type="text" name="busca" placeholder="Digite o nome, descrição, quantidade, peso, largura ou altura.">
             <input type="submit" name="buscar_produto" value="Buscar">
-            <?php 
-                if(isset($_POST['buscar_produto'])){
-                    echo'Foram encontrados <b>'.count($produtos).'</b> resultado(s)';
-                }
-            ?>
         </form>
     </div>
 
@@ -40,28 +22,65 @@
 
         <?php 
         
-        if(isset($_POST['atualizar'])){
-            $quantidade = $_POST['quantidade_atualizar'];
-            $produto_id = $_POST['produto_id'];
-            if($quantidade <= 0){
-                Painel::AtualizarAlerta('erro','Você não pode atualizar a quantidade para 0 ou menor que 0');
-            }else{
-                $sql = MySql::conectar()->prepare("UPDATE `tb_admin.estoque` SET quantidade = ? WHERE id = ?");
-                $sql->execute([$quantidade,$produto_id]);
-                Painel::AtualizarAlerta('sucesso','Você atualizou a quantidade do produto com id: <b>'.$produto_id.'</b>');
+            if(isset($_POST['atualizar'])){
+                $quantidade = $_POST['quantidade_atualizar'];
+                $produto_id = $_POST['produto_id'];
+                if($quantidade < 0){
+                    Painel::AtualizarAlerta('erro','Você não pode atualizar a quantidade para menor que 0');
+                }else{
+                    $sql = MySql::conectar()->prepare("UPDATE `tb_admin.estoque` SET quantidade = ? WHERE id = ?");
+                    $sql->execute([$quantidade,$produto_id]);
+                    Painel::AtualizarAlerta('sucesso','Você atualizou a quantidade do produto com id: <b>'.$produto_id.'</b>');
+                }
             }
-        }
-    
-        @$pdo = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque` $query");
-        $pdo->execute();
-        $produtos = $pdo->fetchAll();
 
+            if(isset($_GET['excluir'])){
+                $id = (int)$_GET['excluir'];
+                $Imagens = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque_imagens` WHERE produto_id = ?");
+                $Imagens->execute([$id]);
+                foreach ($Imagens as $key => $value) {
+                    @unlink(BASE_DIR_PAINEL.'/uploades/'.$value['imagem']);
+                }
+                $excluir = MySql::conectar()->prepare("DELETE FROM `tb_admin.estoque_imagens` WHERE produto_id = ?");
+                $excluir->execute([$id]);
+                $excluir = MySql::conectar()->prepare("DELETE FROM `tb_admin.estoque` WHERE id = ?");
+                $excluir->execute([$id]);
+                Painel::AtualizarAlerta('sucesso','Você excluiu o item do estoque.');
+            }
 
-        foreach ($produtos as $key => $value) {
+            $pdoBanco = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque` WHERE quantidade = ?");
+            $pdoBanco->execute([0]);
+            if($pdoBanco->rowCount() > 0){
+                Painel::AtualizarAlerta('atencao','Você está com produtos em falta! Clique <a href="'.INCLUDE_PATH_PAINEL.'visualizar-produtos?pendentes">aqui</a> para visualiza-los!');
+            }
+
+            $query = "";
+            if(isset($_POST['buscar_produto'])){
+                $nome = $_POST['busca'];
+                $query = "WHERE (nome LIKE '%$nome%' OR descricao LIKE '%$nome%')";
+            }
+
+            if($query == ''){
+                $query2 = "WHERE quantidade > ?";
+            }else{
+                $query2 = "AND quantidade > ?";
+            }
+
         
-            $imagemSingle = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque_imagens` WHERE produto_id = ?");
-            $imagemSingle->execute([$value['id']]);
-            $imagemSingle = $imagemSingle->fetch()['imagem'];
+            @$pdo = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque` $query $query2");
+
+            if($query == ''){
+                $pdo->execute([0]);
+            }else{
+                $pdo->execute([0]);
+            }
+            $produtos = $pdo->fetchAll();
+
+            foreach ($produtos as $key => $value) {
+            
+                $imagemSingle = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque_imagens` WHERE produto_id = ?");
+                $imagemSingle->execute([$value['id']]);
+                $imagemSingle = $imagemSingle->fetch()['imagem'];
 
         ?>
 
@@ -81,9 +100,9 @@
                 <p>Peso: <?php echo $value['peso']; ?></p>
                 <p>Quantidade: <?php echo $value['quantidade']; ?></p>
 
-                <form method="post">
-                    <h2>Atualizar quantidade</h2>
-                    <input type="text" name="quantidade_atualizar" value="<?php echo $value['quantidade']; ?>">
+                <form class="quantidade" method="post">
+                    <p>Atualizar quantidade</p>
+                    <input type="number" name="quantidade_atualizar" value="<?php echo $value['quantidade']; ?>">
                     <input type="hidden" name="produto_id" value="<?php echo $value['id'] ?>">
                     <input type="submit" name="atualizar" value="Atualizar">
                 </form>
@@ -102,3 +121,7 @@
     </div><!--box-display-cliente-->
 
 </div><!--box-content-->
+
+<?php }else{ 
+    include('visualizar-produtos-falta.php');
+} ?>

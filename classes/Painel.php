@@ -79,9 +79,11 @@
 
 		public static function AtualizarAlerta($tipo,$mensagem){
 			if($tipo == 'sucesso'){
-				echo'<div class="atualizado-sucesso">'.$mensagem.'</div>';
+				echo'<div class="atualizado-sucesso"><i class="fas fa-check"></i> '.$mensagem.'</div>';
 			}else if($tipo == 'erro'){
-				echo'<div class="atualizado-erro">'.$mensagem.'</div>';
+				echo'<div class="atualizado-erro"><i class="fas fa-times"></i> '.$mensagem.'</div>';
+			}else if($tipo == 'atencao'){
+				echo'<div class="atualizado-atencao"><i class="fas fa-exclamation-triangle"></i> '.$mensagem.'</div>';
 			}
 		}
 
