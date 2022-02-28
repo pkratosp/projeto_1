@@ -6,7 +6,7 @@ verificaPermissaoPagina(2);
 <div class="box-content">
 
 	<div class="info-empresa">
-			<h2><i class="fas fa-pen-square"></i> Cadastrar Usuario</h2>
+			<h2><i class="fas fa-pen-square"></i> Cadastrar clientes</h2>
 	</div><!--info-empresa-->
 
     <form method="post" enctype="multipart/form-data">

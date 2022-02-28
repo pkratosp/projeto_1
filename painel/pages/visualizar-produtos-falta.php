@@ -44,17 +44,17 @@
         </div>
 
         <div class="info-cliente">
-            <p>Nome: <?php echo $value['nome']; ?></p>
-            <p>descrição: <?php echo $value['descricao']; ?></p>
-            <p>Largura: <?php echo $value['largura']; ?></p>
-            <p>Altura: <?php echo $value['altura']; ?></p>
-            <p>Comprimento: <?php echo $value['comprimento']; ?></p>
-            <p>Peso: <?php echo $value['peso']; ?></p>
-            <p>Quantidade: <?php echo $value['quantidade']; ?></p>
+            <p><div class="bold-black">Nome: </div> <?php echo $value['nome']; ?></p>
+            <p><div class="bold-black">Descrição: </div><?php echo substr($value['descricao'],0,120); ?>...</p>
+            <p><div class="bold-black">Largura: </div><?php echo $value['largura']; ?></p>
+            <p><div class="bold-black">Altura: </div><?php echo $value['altura']; ?></p>
+            <p><div class="bold-black">Comprimento: </div><?php echo $value['comprimento']; ?></p>
+            <p><div class="bold-black">Peso: </div><?php echo $value['peso']; ?></p>
+            <p><div class="bold-black">Quantidade: </div><?php echo $value['quantidade']; ?></p>
 
-            <form method="post">
-                <h2>Atualizar quantidade</h2>
-                <input type="text" name="quantidade_atualizar" value="<?php echo $value['quantidade']; ?>">
+            <form class="quantidade" method="post">
+                <p>Atualizar quantidade</p>
+                <input type="number" name="quantidade_atualizar" value="<?php echo $value['quantidade']; ?>">
                 <input type="hidden" name="produto_id" value="<?php echo $value['id'] ?>">
                 <input type="submit" name="atualizar" value="Atualizar">
             </form>

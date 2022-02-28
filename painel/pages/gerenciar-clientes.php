@@ -5,7 +5,7 @@
         $selecione = MySql::conectar()->prepare("SELECT * FROM `tb_admin.clientes` WHERE id = ?");
         $selecione->execute([$idExcluir]);
 
-        $imagem = $selecione->fetch()['image'];
+        $imagem = $selecione->fetch()['imagem'];
         Painel::deletar('tb_admin.clientes',$idExcluir);
         Painel::deleteImagem($imagem);
     }

@@ -8,6 +8,12 @@
 	clear: both;
 }
 
+.bold-black{
+	font-weight: bolder;
+	display: inline-block;
+	color: black;
+}
+
 html,body{
 	height: 100%;
 	background-color: #F1F1F1;

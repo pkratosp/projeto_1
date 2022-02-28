@@ -98,7 +98,7 @@
             foreach ($pendentes as $key => $value) {
             $cliente_nome = MySql::conectar()->prepare("SELECT `nome` FROM `tb_admin.clientes` WHERE id = ?");
             $cliente_nome->execute([$value['cliente_id']]);
-            $cliente_nome = $cliente_nome->fetch()['nome'];
+            @$cliente_nome = $cliente_nome->fetch()['nome'];
         ?>
 
 

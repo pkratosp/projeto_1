@@ -118,7 +118,7 @@
 
 		<div class="servicos-painel">
 			<div class="box-opitions">
-					<h2>Cadastrar produtos</h2>
+					<h2>Controle de estoque</h2>
 					<ul>
 						<li><a <?php SelecioneMenu('cadastrar-produtos'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-produtos">Cadastrar Produtos</a></li>
 						<li><a <?php SelecioneMenu('visualizar-produtos'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-produtos">Visualizar Produtos</a></li>
