@@ -15,6 +15,7 @@
 			$_SESSION['nome'] = $info['nome'];
 			$_SESSION['cargo'] = $info['cargo'];
 			$_SESSION['img'] = $info['img'];
+			$_SESSION['id_user'] = $info['id'];
 			header('Location: '.INCLUDE_PATH_PAINEL);
 			die();
 
@@ -55,6 +56,7 @@
 						$_SESSION['cargo'] = $info['cargo'];
 						$_SESSION['nome'] = $info['nome'];
 						$_SESSION['img'] = $info['img'];
+						$_SESSION['id_user'] = $info['id'];
 
 						if(isset($_POST['lembrar'])){
 							setcookie('lembrar',true, time()+(60*60*24), '/');//da um dia

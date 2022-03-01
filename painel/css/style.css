@@ -199,6 +199,7 @@ header{
 	text-decoration: none;
 	padding: 15px 2%;
 	display: inline-block;
+	margin: 0 6px;
 }
 
 .pagina-inicial-mobile{display: none;}
@@ -604,6 +605,31 @@ table tr td{
 }
 
 /*termina gerenciar clientes*/
+
+/*Começa o chatOnline*/
+.chat-main{
+	width: 92%;
+	height: 400px;
+	padding: 0 2%;
+	margin: 0 2%;
+	margin: 0 auto;
+	overflow-y: scroll;
+	border: 2px solid #424242;
+}
+
+.chat-mensagem{
+	border-bottom: 2px solid #424242;
+	margin: 15px 0;
+}
+
+.chat-mensagem > span{
+	background-color: #00bfa5;
+	border-radius: 20px;
+	padding: 4px 6px;
+	margin: 4px 0;
+	display: inline-block;
+}
+/*termina o chatOline*/
 
 @media only screen and (max-width: 750px) {
 

@@ -135,6 +135,7 @@
 			<i class="fas fa-align-center"></i>
 		</div><!--menu-->
 
+			<a class="pagina-inicial" href="<?php echo INCLUDE_PATH_PAINEL ?>chat"><i class="fas fa-comments"></i> Chat</a>
 			<a class="pagina-inicial" href="<?php echo INCLUDE_PATH_PAINEL ?>"><i class="fas fa-home"></i>Página Inicial</a>
 			<a class="pagina-inicial-mobile" href="<?php echo INCLUDE_PATH_PAINEL ?>"><i class="fas fa-home"></i></a>
 
@@ -158,6 +159,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="js/jquery.mask.js"></script>
 <script src="js/script.js"></script>
+<script src="js/jquery.ajaxform.js"></script>
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://cdn.jsdelivr.net/npm/zebra_datepicker@1.9.13/dist/zebra_datepicker.min.js"></script>
 <script src="js/jquery.maskMoney.js"></script>
@@ -170,6 +172,7 @@
   });
 </script>
 
+<?php Painel::loadJs(['chat.js'],'chat'); ?>
 
 </body>
 </html>
