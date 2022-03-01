@@ -282,6 +282,12 @@ div.content{
 	display: flex;
 }
 
+.alinhe-box-produto{
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: center;
+}
+
 .info-padrao{
 	width: calc(100% / 3);
 	padding: 20px 2%;
@@ -498,6 +504,24 @@ table tr td{
 	border-radius: 10px;
 }
 
+.avatar-perfil-edite{
+	width: 100%;
+}
+
+.avatar-perfil-edite > i{
+	display: block;
+	text-align: center;
+	padding: 8px;
+}
+
+.avatar-perfil-edite > img{
+	width: 130px;
+	height: 130px;
+	margin: 10px auto;
+    display: block;
+	border-radius: 10px;
+}
+
 .info-cliente{
 	color: #424242;
 	font-size: 18px;
@@ -564,6 +588,19 @@ table tr td{
 	color: #FFFFFF;
 	cursor: pointer;
 	margin: 15px 0;
+}
+
+.card-title{
+	width: 96%;
+    margin: 10px 2%;
+    padding: 10px 2%;
+	background-color: #0091ea;
+	padding: 10px;
+	color: white;
+}
+
+.card-title h2{
+	font-size: 17px;
 }
 
 /*termina gerenciar clientes*/

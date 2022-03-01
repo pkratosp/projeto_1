@@ -80,7 +80,7 @@
             
                 $imagemSingle = MySql::conectar()->prepare("SELECT * FROM `tb_admin.estoque_imagens` WHERE produto_id = ?");
                 $imagemSingle->execute([$value['id']]);
-                $imagemSingle = $imagemSingle->fetch()['imagem'];
+                @$imagemSingle = $imagemSingle->fetch()['imagem'];
 
         ?>
 
