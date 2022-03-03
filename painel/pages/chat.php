@@ -6,11 +6,23 @@
 
     <div class="chat-main">
 
-        <?php for($i = 0;$i < 20; $i++){ ?>
-        <div class="chat-mensagem">
-            <span>Pedro Henrique</span>
-            <p>Olá como você está?</p>
-        </div><!--chat-mensagem-->
+        <?php 
+
+            $mensagens = MySql::conectar()->prepare("SELECT * FROM `tb_admin.chat` ORDER BY id DESC LIMIT 10");
+            $mensagens->execute();
+            $mensagens = $mensagens->fetchAll();
+            $mensagens = array_reverse($mensagens);
+
+            foreach ($mensagens as $key => $value) {
+                $nomeUsuario = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` WHERE id = ?");
+                $nomeUsuario->execute([$value['user_id']]);
+                $nomeUsuario = $nomeUsuario->fetch()['nome'];
+
+        ?>
+            <div class="chat-mensagem">
+                <span><?php echo $nomeUsuario ?></span>
+                <p><?php echo $value['mensagem']; ?></p>
+            </div><!--chat-mensagem-->
 
         <?php } ?>
 

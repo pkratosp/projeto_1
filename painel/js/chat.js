@@ -19,19 +19,29 @@ $(document).ready(function(){
         $.ajax({
             url:'http://localhost/projeto_1/painel/ajax/chat.php',
             method: 'post',
-            data:{'mensagem':mensagem}
+            data:{'mensagem':mensagem,'acao':'inserir_mensagem'}
         }).done(function(data){
-            console.log(data)
+            $('.chat-main').append(data);
+            $('.chat-main').scrollTop($('.chat-main')[0].scrollHeight);
         })
     }
 
     function recuperarMensagem(){
-
+        $.ajax({
+            url:'http://localhost/projeto_1/painel/ajax/chat.php',
+            method:'post',
+            data:{
+                'acao':'recuperar_mensagem'
+            }
+        }).done(function(data){
+            $('.chat-main').append(data);
+            $('.chat-main').scrollTop($('.chat-main')[0].scrollHeight);
+        })
     }
 
     setInterval(function(){
         //aqui vamos recuperar as mensagem a cada 1 segundo
         recuperarMensagem();
-    },1000)
+    },3000)
 
 })
