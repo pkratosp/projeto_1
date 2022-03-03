@@ -100,6 +100,13 @@ $(document).ready(function(){
 		decimal:',',
 		affixesStay:false
 	})
+	$('[name=preço]').maskMoney({
+		prefix:'R$',
+		allowNegative:true,
+		thousands:'.',
+		decimal:',',
+		affixesStay:false
+	})
 	$('[name=vencimento]').Zebra_DatePicker();
 
 })

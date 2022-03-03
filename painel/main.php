@@ -126,6 +126,15 @@
 			</div><!--box-opitions-->
 		</div><!--servicos-painel-->
 
+		<div class="servicos-painel">
+			<div class="box-opitions">
+					<h2>Gestão de imoveis</h2>
+					<ul>
+						<li><a <?php SelecioneMenu('cadastrar-empreendimento'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-empreendimento">Cadastrar empreendimento</a></li>
+					</ul>
+			</div><!--box-opitions-->
+		</div><!--servicos-painel-->
+
 	</div><!--painel-menu-wraper-->
 </div><!--painel--menu-->
 
