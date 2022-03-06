@@ -5,9 +5,15 @@
         $selecione = MySql::conectar()->prepare("SELECT * FROM `tb_admin.clientes` WHERE id = ?");
         $selecione->execute([$idExcluir]);
 
-        $imagem = $selecione->fetch()['imagem'];
-        Painel::deletar('tb_admin.clientes',$idExcluir);
-        Painel::deleteImagem($imagem);
+        $verifica = MySql::conectar()->prepare("SELECT * FROM `tb_admin.financeiro` WHERE status = ? AND cliente_id = ?");
+        $verifica->execute([1,$idExcluir]);
+        if($verifica->rowCount() == 1){
+            $imagem = $selecione->fetch()['imagem'];
+            Painel::deletar('tb_admin.clientes',$idExcluir);
+            Painel::deleteImagem($imagem);
+        }else{
+            Painel::AtualizarAlerta('erro','Você não pode excluir um cliente que ainda não pagou!');
+        }
     }
 
     if(isset($_POST['buscar_cliente'])){
