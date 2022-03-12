@@ -430,13 +430,14 @@ table tr td{
 	text-decoration: none;
 }
 
-.btn-editar-cliente,.btn-excluir-cliente{
+.btn-editar-cliente,.btn-excluir-cliente,.btn-visualizar-cliente{
 	padding: 10px;
 	color: white;
 	text-decoration: none;
 	display: inline-block;
 }
 
+.visu{background-color: #1084cc;}
 .pago{background-color: #00bfa5;}
 .edit{background-color: #F4B03E;}
 .delete{background-color: #eb5948;}

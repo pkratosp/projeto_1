@@ -11,6 +11,7 @@
 	<title>Painel</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zebra_datepicker@latest/dist/css/default/zebra_datepicker.min.css">
 	<link rel="stylesheet" href="<?php echo INCLUDE_PATH_PAINEL ?>css/style.css">
+	<link rel="stylesheet" href="<?php echo INCLUDE_PATH_PAINEL ?>css/jquery-ui.min.css">
 	<script src="https://kit.fontawesome.com/e603a9b5dc.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -131,6 +132,7 @@
 					<h2>Gestão de imoveis</h2>
 					<ul>
 						<li><a <?php SelecioneMenu('cadastrar-empreendimento'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-empreendimento">Cadastrar empreendimento</a></li>
+						<li><a <?php SelecioneMenu('listar-empreendimento'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-empreendimento">Listar empreendimento</a></li>
 					</ul>
 			</div><!--box-opitions-->
 		</div><!--servicos-painel-->
@@ -166,6 +168,7 @@
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<?php Painel::loadJs(['jquery-ui.min.js'],'listar-empreendimento'); ?>
 <script src="js/jquery.mask.js"></script>
 <script src="js/script.js"></script>
 <script src="js/jquery.ajaxform.js"></script>
@@ -182,6 +185,7 @@
 </script>
 
 <?php Painel::loadJs(['chat.js'],'chat'); ?>
+<?php Painel::loadJs(['empreendimento.js'],'listar-empreendimento'); ?>
 
 </body>
 </html>

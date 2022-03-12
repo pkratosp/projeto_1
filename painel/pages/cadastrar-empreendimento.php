@@ -26,9 +26,13 @@ verificaPermissaoPagina(2);
                     if(Painel::imagemValida($imagem) == false){
                         Painel::AtualizarAlerta('erro','A imagem não é valida.');
                     }else{
-
-                       // $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.empreendimentos` VALUES (null,?,?,?,?,?,?)");
-                       // $sql->execute();
+                        $imagem = Painel::updateImage($imagem);
+                        $slug = Painel::generateSlug($nome);
+                        $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.empreendimentos` VALUES (null,?,?,?,?,?,?)");
+                        $sql->execute([$nome,$tipo,$preco,$imagem,$slug,0]);
+                        $last_id = MySql::conectar()->lastInsertId();
+                        $sql = MySql::conectar()->prepare("UPDATE `tb_admin.empreendimentos` SET order_id = ? WHERE id = ?");
+                        $sql->execute([$last_id,$last_id]);
                        Painel::AtualizarAlerta('sucesso','O empreendimento foi cadastrado com sucesso!');
                     }
 
