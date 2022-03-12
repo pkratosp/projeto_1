@@ -22,7 +22,7 @@
 			<h2><i class="fas fa-pen-square"></i> <a href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-produtos">Produtos no estoque</a> » Editar produto id: <?php echo $infoProduto['id'];  ?></h2>
 	</div><!--info-empresa-->
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" action="<?php echo INCLUDE_PATH_PAINEL ?>edite-produto?id=<?php echo $id; ?>" enctype="multipart/form-data">
 
     <?php  
                 
