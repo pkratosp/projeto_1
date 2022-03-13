@@ -49,10 +49,19 @@
 				}else{
 					//caso a pagina nao exista
 
-					header('Location: '.INCLUDE_PATH_PAINEL);
-					
-					//esse da certo mas nao limpa a url
-					//include('../painel/pages/home.php');
+					if(Router::get('visualizar-empreendimento/?',function($par){
+						include('views/visualizar-empreendimento.php');
+					})){
+
+					}else if(Router::post('visualizar-empreendimento/?',function($par){
+						include('views/visualizar-empreendimento.php');
+					})){
+
+					}else{
+						//caso realmente nao exista a pagina acima vai redirecionar
+						header('Location: '.INCLUDE_PATH_PAINEL);
+					}
+
 				}
 			}else{
 				include('../painel/pages/home.php');

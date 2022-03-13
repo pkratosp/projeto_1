@@ -53,7 +53,7 @@
                 <p><div class="bold-black">Tipo: </div> <?php echo $value['tipo']; ?></p>
                 
 
-                <a href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-empreendimento?id=<?php echo $value['id'] ?>" class="btn-visualizar-cliente visu"><i class="fas fa-eye"></i>Visualizar</a>
+                <a href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-empreendimento/<?php echo $value['id'] ?>" class="btn-visualizar-cliente visu"><i class="fas fa-eye"></i>Visualizar</a>
                 <a acationBtn="delete" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-empreendimento?excluir=<?php echo $value['id'] ?>" class="btn-excluir-cliente delete"><i class="fas fa-minus-circle" aria-hidden="true"></i> Excluir</a>
               
             </div>
