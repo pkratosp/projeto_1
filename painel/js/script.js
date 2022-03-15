@@ -93,7 +93,7 @@ $(document).ready(function(){
 	//formato da pagina de cadastrar-clientes
 
 	$('[name=parcelas],[name=intervalo]').mask('99')
-	$('[name=pagamento]').maskMoney({
+	$('[name=pagamento],[name=preco]').maskMoney({
 		prefix:'R$',
 		allowNegative:true,
 		thousands:'.',
