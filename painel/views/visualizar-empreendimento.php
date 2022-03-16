@@ -1,3 +1,18 @@
+<?php 
+
+$id = $par[2];
+
+$sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.empreendimentos` WHERE id = ?");
+$sql->execute([$id]);
+
+$infoEmpreendimento = $sql->fetch();
+
+if($infoEmpreendimento['nome'] == ''){
+    header('Location: '.INCLUDE_PATH_PAINEL);
+    die();
+}
+
+?>
 <div class="box-content">
 
 	<div class="info-empresa">

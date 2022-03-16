@@ -59,7 +59,7 @@
 
 					}else{
 						//caso realmente nao exista a pagina acima vai redirecionar
-						header('Location: '.INCLUDE_PATH_PAINEL);
+						header('Location: '.INCLUDE_PATH_PAINEL);	
 					}
 
 				}
