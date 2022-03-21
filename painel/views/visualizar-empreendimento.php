@@ -27,7 +27,7 @@ if($infoEmpreendimento['nome'] == ''){
 			</div><!--card-title-->
 
 			<div class="avatar-perfil">
-				<img src="http://localhost/projeto_1/painel/uploades/6230f9cd1bc5a.jpeg">
+				<img src="<?php echo INCLUDE_PATH_PAINEL ?>uploades/<?php echo $infoEmpreendimento['imagem'] ?>">
 			</div><!--avatar-perfil-->
 
 		</div><!--row1-->
@@ -39,8 +39,8 @@ if($infoEmpreendimento['nome'] == ''){
 			</div><!--card-title-->
 
 			<div class="info-empreendimento">
-				<p><i class="fas fa-pen-square" aria-hidden="true"></i> Nome do empreendimento: Empreendimento3</p>
-				<p><i class="fas fa-pen-square" aria-hidden="true"></i> Tipo: Residencial</p>
+				<p><i class="fas fa-pen-square" aria-hidden="true"></i> Nome do empreendimento: <?php echo $infoEmpreendimento['nome'] ?></p>
+				<p><i class="fas fa-pen-square" aria-hidden="true"></i> Tipo: <?php echo $infoEmpreendimento['tipo'] ?></p>
 			</div><!--info-empreendimento-->
 			
 		</div><!--row2-->
@@ -88,17 +88,9 @@ if($infoEmpreendimento['nome'] == ''){
 	<div class="wraper-table">
     <table>
         <?php 
-            
-            if(isset($_GET['excluir'])){
-                $idExcluir = (int)$_GET['excluir'];
-                Painel::deletar('tb_site.depoimentos',$idExcluir);
-            }else if(isset($_GET['order']) && isset($_GET['id'])){
-                Painel::ordemItem('tb_site.depoimentos',$_GET['order'],$_GET['id']);
-            }
-
             $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
             $porPagina = 4;
-            $depoimentos = Painel::SelectAll('tb_site.depoimentos', ($paginaAtual - 1) * $porPagina, $porPagina);
+            $imoveis = Painel::SelectAll('tb_admin.imoveis', ($paginaAtual - 1) * $porPagina, $porPagina);
         ?>
 
         <tr>
@@ -108,13 +100,13 @@ if($infoEmpreendimento['nome'] == ''){
             <td>#</td>
         </tr>
 
-        <?php foreach ($depoimentos as $key => $value) { ?>
+        <?php foreach ($imoveis as $key => $value) { ?>
 
             <tr>
                 <td><?php echo $value['nome']; ?></td>
-                <td><?php echo $value['depoimento']; ?></td>
-                <td><?php echo $value['data']; ?></td>
-                <td><a acationBtn="delete" class="btn-options delete" href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-depoimentos?excluir=<?php echo $value['id']; ?>"><i class="fas fa-minus-circle"></i> Excluir</td></td>
+                <td><?php echo $value['preco']; ?></td>
+                <td><?php echo $value['area']; ?></td>
+                <td><a class="btn-options visu" href="<?php echo INCLUDE_PATH_PAINEL; ?>editar-imovel?id=<?php echo $value['id']; ?>"><i class="fas fa-eye" aria-hidden="true"></i> Visualizar</td></td>
             </tr>
 
         <?php } ?>
