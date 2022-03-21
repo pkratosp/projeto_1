@@ -3,6 +3,16 @@
 	class Painel
 	{
 
+		public static function convertMoney($valor){
+			return number_format($valor,2,',','.');
+		}
+
+		public static function formateMoedaBd($valor){
+			$valor = str_replace('.','',$valor);
+			$valor = str_replace(',','.',$valor);
+			return $valor;
+		}
+
 		//transforma tudo de acento em letra normal sem acentuação e espaços e coisas como ?,! sao subistituido com -
 		public static function generateSlug($str){
 			$str = mb_strtolower($str);
@@ -57,9 +67,18 @@
 						include('views/visualizar-empreendimento.php');
 					})){
 
+					}else if(Router::get('editar-imovel/?',function($par){
+						include('views/editar-imovel.php');
+					})){
+							
+					}else if(Router::post('editar-imovel/?',function($par){
+						include('views/editar-imovel.php');
+					})){
+
 					}else{
 						//caso realmente nao exista a pagina acima vai redirecionar
-						header('Location: '.INCLUDE_PATH_PAINEL);	
+						header('Location: '.INCLUDE_PATH_PAINEL);
+
 					}
 
 				}
@@ -186,6 +205,17 @@
 			}
 			
 			$sql->execute();
+			return $sql->fetchAll();
+		}
+
+		public static function SelectQuery($tabela,$query='',$arr=''){
+			if($query != false){
+				$sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` WHERE $query");
+				$sql->execute($arr);
+			}else{
+				$sql = MySql::conectar()->prepare("SELECT * FROM `$tabela`");
+				$sql->execute();
+			}
 			return $sql->fetchAll();
 		}
 

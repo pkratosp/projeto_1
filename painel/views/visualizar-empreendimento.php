@@ -54,7 +54,52 @@ if($infoEmpreendimento['nome'] == ''){
 	<form method="post" enctype="multipart/form-data">
 
         <?php 
-        
+            
+            if(isset($_POST['acao'])){
+
+                $emprendId = $id;
+                $nome = $_POST['nome'];
+                $preco = Painel::formateMoedaBd($_POST['preco']);
+                $area = $_POST['area'];
+
+                $imagens = [];
+                $aumontFiles = count($_FILES['image']['name']);
+                $sucesso = true;
+
+                if($_FILES['image']['name'][0] != ''){
+                    for ($i=0; $i < $aumontFiles; $i++) { 
+                        $imagensAtual = ['type'=>$_FILES['image']['type'][$i],'size'=>$_FILES['image']['size'][$i]];
+                        if(Painel::imagemValida($imagensAtual) == false){
+                            $sucesso = false;
+                            Painel::AtualizarAlerta('erro','As imagens não são validas!');
+                            break;
+                        }
+                    }
+                }else{
+                    $sucesso = false;
+                    Painel::AtualizarAlerta('erro','Você precisa selecionar uma imagem!');
+                }
+
+                if($sucesso){
+                    for ($i=0; $i < $aumontFiles; $i++) { 
+                        $imagensAtual = ['tmp_name'=>$_FILES['image']['tmp_name'][$i],'name'=>$_FILES['image']['name'][$i]];
+                        $imagens[] = Painel::updateImage($imagensAtual);
+                    }
+
+                    $pdo = MySql::conectar()->prepare("INSERT INTO `tb_admin.imoveis` VALUES (null,?,?,?,?,?)");
+                    $pdo->execute([$emprendId,$nome,$preco,$area,0]);
+                    $last_id = MySql::conectar()->lastInsertId();
+                    foreach ($imagens as $key => $value) {
+                        $pdo = MySql::conectar()->prepare("INSERT INTO `tb_admin.imagens_imoveis` VALUES(null,?,?)");
+                        $pdo->execute([$last_id,$value]);
+                    }
+
+                    Painel::AtualizarAlerta('sucesso','Você cadastrou o imóvel com sucesso.');
+
+                }
+                
+
+            }
         
         ?>
 
@@ -87,12 +132,6 @@ if($infoEmpreendimento['nome'] == ''){
 
 	<div class="wraper-table">
     <table>
-        <?php 
-            $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-            $porPagina = 4;
-            $imoveis = Painel::SelectAll('tb_admin.imoveis', ($paginaAtual - 1) * $porPagina, $porPagina);
-        ?>
-
         <tr>
             <td>Nome</td>
             <td>Preço</td>
@@ -100,32 +139,21 @@ if($infoEmpreendimento['nome'] == ''){
             <td>#</td>
         </tr>
 
-        <?php foreach ($imoveis as $key => $value) { ?>
+        <?php
+            $imoveis = Painel::SelectQuery('tb_admin.imoveis','empreend_id=?',[$id]);
+            foreach ($imoveis as $key => $value) { 
+                $value['preco'] = Painel::convertMoney($value['preco']);    
+        ?>
 
             <tr>
                 <td><?php echo $value['nome']; ?></td>
-                <td><?php echo $value['preco']; ?></td>
-                <td><?php echo $value['area']; ?></td>
-                <td><a class="btn-options visu" href="<?php echo INCLUDE_PATH_PAINEL; ?>editar-imovel?id=<?php echo $value['id']; ?>"><i class="fas fa-eye" aria-hidden="true"></i> Visualizar</td></td>
+                <td>R$<?php echo $value['preco']; ?></td>
+			    <td><?php echo $value['area']; ?>m²</td>
+                <td><a class="btn-options visu" href="<?php echo INCLUDE_PATH_PAINEL; ?>editar-imovel/<?php echo $value['id']; ?>"><i class="fas fa-eye" aria-hidden="true"></i> Visualizar</td></td>
             </tr>
 
         <?php } ?>
     </table>
     </div><!--wraper-table-->
     
-    <div class="paginacao">
-        <?php 
-            $totalPagina = ceil(count(Painel::SelectAll('tb_site.depoimentos')) / $porPagina);
-            
-            for($i = 1; $i <= $totalPagina; $i++){
-                if($i == $paginaAtual){
-                    echo '<a class="pag-select" href="'.INCLUDE_PATH_PAINEL.'listar-depoimentos?pagina='.$i.'">'.$i.'</a>';
-                }else{
-                    echo'<a href="'.INCLUDE_PATH_PAINEL.'listar-depoimentos?pagina='.$i.'">'.$i.'</a>';
-                }
-            }
-
-        ?>
-    </div><!--paginacao-->
-  
 </div>
